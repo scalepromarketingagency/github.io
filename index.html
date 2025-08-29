@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScalePro Marketing Agency</title>
+    <title>ScalePro Marketing Agency | Graphic Design & Marketing Experts</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4a3cff;
-            --secondary: #ff6b6b;
-            --accent: #3ccfcf;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --gray: #6c757d;
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --success: #2ECC71;
         }
         
         * {
@@ -44,11 +45,12 @@
         
         /* Header & Navigation */
         header {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
         
         nav {
@@ -63,10 +65,17 @@
             font-weight: 800;
             font-size: 1.8rem;
             color: var(--primary);
+            display: flex;
+            align-items: center;
         }
         
         .logo span {
             color: var(--secondary);
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 2rem;
         }
         
         .nav-links {
@@ -83,6 +92,22 @@
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
         }
         
         .nav-links a:hover {
@@ -91,7 +116,7 @@
         
         .btn {
             display: inline-block;
-            background: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             color: white;
             padding: 0.8rem 1.8rem;
             border-radius: 50px;
@@ -100,17 +125,17 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
         }
         
         .btn:hover {
-            background: #3528e0;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.4);
         }
         
         /* Hero Section */
         .hero {
-            padding: 8rem 0 5rem;
+            padding: 10rem 0 5rem;
             background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 100%);
             position: relative;
             overflow: hidden;
@@ -125,16 +150,16 @@
         .hero-text {
             flex: 1;
             padding-right: 2rem;
+            animation: fadeIn 1s ease;
         }
         
         .hero-text h1 {
             font-size: 3.5rem;
             line-height: 1.2;
             margin-bottom: 1.5rem;
-        }
-        
-        .hero-text h1 span {
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .hero-text p {
@@ -146,12 +171,40 @@
         .hero-image {
             flex: 1;
             text-align: center;
+            position: relative;
         }
         
         .hero-image img {
             max-width: 100%;
             border-radius: 10px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .shape-1 {
+            top: -20px;
+            left: 50px;
+            width: 150px;
+            height: 150px;
+            animation: float 7s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            bottom: 50px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            animation: float 6s ease-in-out infinite reverse;
         }
         
         /* Services Section */
@@ -189,6 +242,26 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.05;
+            transition: height 0.5s;
+            z-index: -1;
+        }
+        
+        .service-card:hover:before {
+            height: 100%;
         }
         
         .service-card:hover {
@@ -199,7 +272,7 @@
         .service-icon {
             width: 70px;
             height: 70px;
-            background: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             color: white;
             border-radius: 50%;
             display: flex;
@@ -212,6 +285,137 @@
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
+        }
+        
+        /* Service Details Section */
+        .service-details {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 100%);
+        }
+        
+        .service-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+        
+        .service-detail:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .service-detail-content {
+            flex: 1;
+            padding: 0 2rem;
+        }
+        
+        .service-detail-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .service-detail-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-detail-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .benefit-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .benefit-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefit-list li i {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 0;
+            background-color: white;
+        }
+        
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(108, 99, 255, 0.8), rgba(54, 209, 220, 0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
         }
         
         /* Reviews Section */
@@ -231,6 +435,17 @@
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .review-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(108, 99, 255, 0.1);
+            font-family: 'Montserrat', sans-serif;
         }
         
         .review-header {
@@ -243,7 +458,7 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -266,12 +481,101 @@
             margin-bottom: 1rem;
         }
         
+        /* Process Section */
+        .process {
+            padding: 6rem 0;
+            background-color: white;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            position: relative;
+        }
+        
+        .process-steps:before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #eee;
+            z-index: 1;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+        
+        .step-number:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.2;
+            animation: pulse 2s infinite;
+            z-index: -1;
+        }
+        
+        .process-step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 6rem 0;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
         /* CTA Section */
         .cta {
             padding: 6rem 0;
-            background: var(--primary);
+            background: var(--dark);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
         .cta h2 {
@@ -311,6 +615,9 @@
         .footer-info h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .footer-info p {
@@ -371,6 +678,24 @@
             font-size: 0.9rem;
         }
         
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content {
@@ -385,6 +710,25 @@
             
             .hero-text h1 {
                 font-size: 2.8rem;
+            }
+            
+            .service-detail, .service-detail:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .service-detail-content {
+                padding: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .process-steps:before {
+                display: none;
             }
         }
         
@@ -408,9 +752,11 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Scale<span>Pro</span></div>
+                <div class="logo"><i class="fas fa-paint-brush"></i>Scale<span>Pro</span></div>
                 <ul class="nav-links">
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#process">Process</a></li>
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -424,12 +770,14 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Grow Your Business with <span>ScalePro Marketing</span></h1>
-                    <p>We help businesses scale through strategic e-commerce solutions, web development, email marketing, and SEO expertise. Let us create a customized marketing plan for your success.</p>
+                    <h1>Design That Drives Growth</h1>
+                    <p>We create stunning visual experiences that elevate brands, engage audiences, and deliver measurable results through strategic design and marketing.</p>
                     <a href="#contact" class="btn">Get Free Consultation</a>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Digital Marketing">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Graphic Design">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
                 </div>
             </div>
         </div>
@@ -440,36 +788,36 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Services</h2>
-                <p>We offer a comprehensive suite of digital marketing services to help your business grow</p>
+                <p>We offer a comprehensive suite of design and marketing services to help your business grow</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-palette"></i>
                     </div>
-                    <h3>E-Commerce Solutions</h3>
-                    <p>Optimize your online store for maximum conversions and sales with our expert e-commerce strategies.</p>
+                    <h3>Graphic Design</h3>
+                    <p>Stunning visuals that communicate your brand's story and captivate your audience.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3>Website Development</h3>
-                    <p>Get a responsive, fast, and SEO-friendly website that represents your brand perfectly.</p>
+                    <p>Responsive, fast, and SEO-friendly websites that represent your brand perfectly.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h3>Email Marketing</h3>
-                    <p>Engage your audience with targeted email campaigns that drive conversions and build loyalty.</p>
+                    <p>Engage your audience with targeted email campaigns that drive conversions.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-search"></i>
                     </div>
                     <h3>SEO Optimization</h3>
-                    <p>Rank higher on search engines and drive organic traffic with our proven SEO strategies.</p>
+                    <p>Rank higher on search engines and drive organic traffic with our proven strategies.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -482,8 +830,190 @@
                     <div class="service-icon">
                         <i class="fas fa-star"></i>
                     </div>
-                    <h3>Performance Reviews</h3>
-                    <p>Comprehensive analysis of your marketing efforts with actionable insights for improvement.</p>
+                    <h3>Brand Identity</h3>
+                    <p>Comprehensive branding solutions that make your business memorable and recognizable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details Section -->
+    <section class="service-details">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Our Services Help You Succeed</h2>
+                <p>We don't just create pretty designs - we develop strategic solutions that drive real business results</p>
+            </div>
+            
+            <div class="service-detail">
+                <div class="service-detail-content">
+                    <h3>Strategic Graphic Design</h3>
+                    <p>Our graphic design services go beyond aesthetics to create visual solutions that communicate your brand's value proposition effectively. We design with purpose, ensuring every element serves a strategic goal.</p>
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-check-circle"></i> Increase brand recognition and recall</li>
+                        <li><i class="fas fa-check-circle"></i> Communicate complex ideas visually</li>
+                        <li><i class="fas fa-check-circle"></i> Build trust and credibility with professional design</li>
+                        <li><i class="fas fa-check-circle"></i> Differentiate from competitors with unique visual identity</li>
+                        <li><i class="fas fa-check-circle"></i> Improve conversion rates with strategic design elements</li>
+                    </ul>
+                    <a href="#contact" class="btn">Get Custom Design</a>
+                </div>
+                <div class="service-detail-image">
+                    <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Strategic Graphic Design">
+                </div>
+            </div>
+            
+            <div class="service-detail">
+                <div class="service-detail-content">
+                    <h3>Result-Driven SEO</h3>
+                    <p>Our SEO approach combines technical excellence with content strategy to position your website as an authority in your industry. We focus on sustainable growth rather than quick fixes.</p>
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-check-circle"></i> Increase qualified traffic to your website</li>
+                        <li><i class="fas fa-check-circle"></i> Achieve higher conversion rates than paid advertising</li>
+                        <li><i class="fas fa-check-circle"></i> Build long-term asset that grows over time</li>
+                        <li><i class="fas fa-check-circle"></i> Establish authority and trust in your industry</li>
+                        <li><i class="fas fa-check-circle"></i> Outperform competitors in search results</li>
+                    </ul>
+                    <a href="#contact" class="btn">Boost Your SEO</a>
+                </div>
+                <div class="service-detail-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Result-Driven SEO">
+                </div>
+            </div>
+            
+            <div class="service-detail">
+                <div class="service-detail-content">
+                    <h3>High-Converting Email Marketing</h3>
+                    <p>We create email campaigns that people actually want to read. Our strategy focuses on building relationships, providing value, and driving action through personalized, segmented campaigns.</p>
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-check-circle"></i> Nurture leads into customers automatically</li>
+                        <li><i class="fas fa-check-circle"></i> Achieve ROI up to $42 for every $1 spent</li>
+                        <li><i class="fas fa-check-circle"></i> Maintain direct communication channel with your audience</li>
+                        <li><i class="fas fa-check-circle"></i> Drive repeat business from existing customers</li>
+                        <li><i class="fas fa-check-circle"></i> Personalize messaging based on user behavior</li>
+                    </ul>
+                    <a href="#contact" class="btn">Improve Email ROI</a>
+                </div>
+                <div class="service-detail-image">
+                    <img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Email Marketing">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Portfolio</h2>
+                <p>Check out some of our recent design and marketing projects</p>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Branding</button>
+                <button class="filter-btn">Web Design</button>
+                <button class="filter-btn">Marketing</button>
+                <button class="filter-btn">Social Media</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Brand Design" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Modern Brand Identity</h3>
+                        <p>Complete rebrand for tech startup</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="E-commerce Website" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>E-commerce Website</h3>
+                        <p>Online store with increased conversion rate</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="SEO Campaign" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>SEO Campaign</h3>
+                        <p>245% increase in organic traffic</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Social Media Campaign" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Social Media Campaign</h3>
+                        <p>Viral campaign with 2M+ impressions</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Email Marketing" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Email Marketing</h3>
+                        <p>32% open rate and 15% conversion rate</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Logo Design" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Logo Design</h3>
+                        <p>Modern logo for fashion brand</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Process</h2>
+                <p>We follow a structured approach to ensure your project's success</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Discovery</h4>
+                    <p>We learn about your business, goals, and target audience to create a tailored strategy.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Planning</h4>
+                    <p>We develop a comprehensive plan with clear milestones, timelines, and deliverables.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Execution</h4>
+                    <p>Our team brings the plan to life with creativity, technical expertise, and attention to detail.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Optimization</h4>
+                    <p>We analyze performance, gather insights, and refine our approach for maximum results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>245%</h3>
+                    <p>Average Increase in Traffic</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Client Satisfaction Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>156</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>42%</h3>
+                    <p>Average Conversion Increase</p>
                 </div>
             </div>
         </div>
@@ -514,7 +1044,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p>"ScalePro transformed our online store. Our sales increased by 150% within just 3 months of working with them!"</p>
+                    <p>"ScalePro transformed our online store. Our sales increased by 150% within just 3 months of working with them! Their design expertise and marketing strategy were exactly what we needed."</p>
                 </div>
                 <div class="review-card">
                     <div class="review-header">
@@ -533,7 +1063,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p>"Their SEO expertise helped us rank #1 for our main keywords. The traffic and leads have been incredible."</p>
+                    <p>"Their SEO expertise helped us rank #1 for our main keywords. The traffic and leads have been incredible. They really understand how to combine design with functionality."</p>
                 </div>
                 <div class="review-card">
                     <div class="review-header">
@@ -552,7 +1082,64 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p>"The email marketing campaigns created by ScalePro have consistently achieved above-industry open and click-through rates."</p>
+                    <p>"The email marketing campaigns created by ScalePro have consistently achieved above-industry open and click-through rates. Their designs are not just beautiful but highly effective."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4>James Wilson</h4>
+                            <p>Restaurant Chain Owner</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The branding package they created completely transformed our business identity. We've received countless compliments on our new logo and marketing materials."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4>Lisa Chen</h4>
+                            <p>Tech Company CEO</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"ScalePro's website redesign not only made our site beautiful but also significantly improved conversion rates. Their attention to user experience is remarkable."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4>David Miller</h4>
+                            <p>Non-Profit Director</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Their social media campaign increased our donations by 200% in just two months. They know how to create content that resonates with our audience and drives action."</p>
                 </div>
             </div>
         </div>
@@ -573,7 +1160,7 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>ScalePro Marketing Agency</h3>
-                    <p>We help businesses grow through strategic digital marketing solutions tailored to their unique needs.</p>
+                    <p>We help businesses grow through strategic design and marketing solutions tailored to their unique needs.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -584,7 +1171,7 @@
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#">E-Commerce Solutions</a></li>
+                        <li><a href="#">Graphic Design</a></li>
                         <li><a href="#">Website Development</a></li>
                         <li><a href="#">Email Marketing</a></li>
                         <li><a href="#">SEO Optimization</a></li>
